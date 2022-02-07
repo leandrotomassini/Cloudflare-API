@@ -1,6 +1,7 @@
 import isOnline from 'is-online';
 import http from 'http';
 
+
 class Cloudflare {
 
     private xAuthKey: string;
@@ -45,12 +46,15 @@ class Cloudflare {
         this.obtenerDominios();
     }
 
-    private obtenerDominios(){
-        console.log('Obtener dominios: ');
-        
+    private obtenerDominios() {
+        const fetch = require('node-fetch');
+
+        fetch("https://swapi.co/api/people/3")
+            .then(promesaFetch => promesaFetch.json())
+            .then(contenido => console.log(contenido));
     }
 
-   
+
 }
 
 export default Cloudflare;
