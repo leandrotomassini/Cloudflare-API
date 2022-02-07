@@ -35,6 +35,7 @@ const obtenerDominios = async (ipPublica) => {
 }
 
 const obtenerIdZona = async (dominio, iddominio, ipPublica) => {
+
     const responseZona = await fetch(`https://api.cloudflare.com/client/v4/zones/${iddominio}/dns_records`, {
         method: 'get',
         headers: {
@@ -44,17 +45,45 @@ const obtenerIdZona = async (dominio, iddominio, ipPublica) => {
     });
 
     const idZonas = await responseZona.json();
+
     console.log('Dominio: ', dominio);
     console.log('Id dominio: ', iddominio);
-    console.log('id dns: ', idZonas.result[0].id);
-    console.log('ip pública: ', idZonas.result[0].content);
-    console.log('Mi ip: ', ipPublica);
+    console.log('Id DNS: ', idZonas.result[0].id);
+    console.log('Ip del dominio: ', idZonas.result[0].content);
+    console.log('Mi ip pública: ', ipPublica);
+
+    if (idZonas.result[0].content != ipPublica) {
+
+        console.log('Las ip no coinciden');
+       
+
+        let actualizarIp = await fetch(`https://api.cloudflare.com/client/v4/zones/${iddominio}/dns_records/${idZonas.result[0].id}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                type: "A",
+                name: dominio,
+                content: ipPublica,
+                ttl: 1,
+                proxied: true
+            }),
+            headers: {
+                'x-auth-key': process.env.XAUTHKEY,
+                'x-auth-email': process.env.XAUTHEMAIL
+            }
+        });
+
+        let ipActualizadas = await actualizarIp.json();
+        
+    }
+
     console.log();
+
+
 }
 
 
 const estadoInternet = () => {
-    
+
     const internetAvailable = require("internet-available");
 
     internetAvailable().then(function () {
