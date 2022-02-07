@@ -1,0 +1,26 @@
+{
+  "name": "cloudflare-api",
+  "version": "1.0.0",
+  "description": "![Cloudflare API](https://i.imgur.com/eHhB4oB.jpg)\r # Cloudflare API\r The Cloudflare API is a RESTful API based on HTTPS requests and JSON responses.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon dist/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leandrotomassini/Cloudflare-API.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leandrotomassini/Cloudflare-API/issues"
+  },
+  "homepage": "https://github.com/leandrotomassini/Cloudflare-API#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "is-online": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.15"
+  }
+}
