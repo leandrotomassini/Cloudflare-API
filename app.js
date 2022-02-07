@@ -93,4 +93,5 @@ const estadoInternet = () => {
     });
 }
 
-estadoInternet();
+
+let timerId = setInterval(() => estadoInternet(), 600000);
