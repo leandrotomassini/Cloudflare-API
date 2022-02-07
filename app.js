@@ -53,7 +53,15 @@ const obtenerIdZona = async (dominio, iddominio, ipPublica) => {
 }
 
 
+const estadoInternet = () => {
+    
+    const internetAvailable = require("internet-available");
 
+    internetAvailable().then(function () {
+        obtenerMiIpPublica();
+    }).catch(function () {
+        console.log("No internet");
+    });
+}
 
-
-obtenerMiIpPublica();
+estadoInternet();

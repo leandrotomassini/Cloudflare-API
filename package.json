@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "dotenv": "^16.0.0",
+    "internet-available": "^1.0.0",
     "node-fetch": "^2.6.7",
     "public-ip": "^5.0.0"
   }
